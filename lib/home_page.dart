@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:morsetorch/alphabet_page.dart';
 import 'package:torch_compat/torch_compat.dart';
 
 import 'constants.dart';
@@ -9,7 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   TextEditingController textCtrl = new TextEditingController();
 
   int unit = 200;
@@ -98,8 +98,7 @@ class _HomePageState extends State<HomePage> {
   void hideKeyboard() {
     FocusScopeNode currentFocus = FocusScope.of(context);
 
-    if (!currentFocus.hasPrimaryFocus &&
-        currentFocus.focusedChild != null) {
+    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
       currentFocus.focusedChild.unfocus();
     }
   }
@@ -122,23 +121,59 @@ class _HomePageState extends State<HomePage> {
                 child: TextFormField(
                   controller: textCtrl,
                   textCapitalization: TextCapitalization.characters,
+                  onChanged: (val) {
+                    setState(() {});
+                  },
+                  decoration: InputDecoration(
+                    suffixIcon: textCtrl.text.length > 0
+                        ? IconButton(
+                            icon: Icon(
+                              Icons.clear,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {
+                              textCtrl.clear();
+                              setState(() {});
+                            },
+                          )
+                        : null,
+                  ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               progress != null
-                  ? LinearProgressIndicator(value: progress,)
+                  ? LinearProgressIndicator(
+                      value: progress,
+                    )
                   : Container(),
               SizedBox(
                 height: 10,
               ),
-              Text(flashingCode, textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-              SizedBox(height: 10,),
+              Text(
+                flashingCode,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               RaisedButton(
                 color: Colors.lightBlue,
                 textColor: Colors.white,
                 child: Text('Flash'),
                 onPressed: flashing ? null : flashText,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
+                color: Colors.lightBlue,
+                textColor: Colors.white,
+                child: Text('View alphabet'),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AlphabetPage())),
               ),
             ],
           ),
