@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:morsetorch/alphabet_page.dart';
+import 'package:morsetorch/decoder_page.dart';
 import 'package:torch_compat/torch_compat.dart';
 
 import 'constants.dart';
@@ -125,6 +127,7 @@ class _HomePageState extends State<HomePage> {
                     setState(() {});
                   },
                   decoration: InputDecoration(
+                    hintText: 'Enter message',
                     suffixIcon: textCtrl.text.length > 0
                         ? IconButton(
                             icon: Icon(
@@ -159,6 +162,22 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 10,
               ),
+              //Text('Speed slider', textAlign: TextAlign.center, style: TextStyle(color: Colors.lightBlue, fontSize: 18),),
+              Slider(
+                value: unit.toDouble(),
+                onChanged: (double val) {
+                  setState(() {
+                    unit = val.toInt();
+                  });
+                },
+                divisions: 18,
+                min: 100,
+                max: 1000,
+                label: '1 unit: $unit ms',
+              ),
+              SizedBox(
+                height: 10,
+              ),
               RaisedButton(
                 color: Colors.lightBlue,
                 textColor: Colors.white,
@@ -174,6 +193,16 @@ class _HomePageState extends State<HomePage> {
                 child: Text('View alphabet'),
                 onPressed: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AlphabetPage())),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
+                color: Colors.lightBlue,
+                textColor: Colors.white,
+                child: Text('Open decoder'),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DecoderPage())),
               ),
             ],
           ),

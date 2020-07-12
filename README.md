@@ -9,3 +9,7 @@ Send message in Morse code via flashlight on you smartphone
 
 Morse alphabet grid
 - Morse alphabet displaying signs with their codes in an animated grid
+
+Decoder
+- input Morse code
+- decode the message
