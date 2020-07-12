@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - torch_compat (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - torch_compat (from `.symlinks/plugins/torch_compat/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  torch_compat:
+    :path: ".symlinks/plugins/torch_compat/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  torch_compat: 4bdf81e976740fb92263dad3472666bb58aceca4
+
+PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a
+
+COCOAPODS: 1.9.1
