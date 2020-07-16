@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 import 'package:morsetorch/alphabet_page.dart';
 import 'package:morsetorch/decoder_page.dart';
 import 'package:torch_compat/torch_compat.dart';
-
+import 'dart:core';
 import 'constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -126,6 +127,9 @@ class _HomePageState extends State<HomePage> {
                   onChanged: (val) {
                     setState(() {});
                   },
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(RegExp('[A-Z0-9]'),),
+                  ],
                   decoration: InputDecoration(
                     hintText: 'Enter message',
                     suffixIcon: textCtrl.text.length > 0
